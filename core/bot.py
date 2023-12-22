@@ -3,6 +3,10 @@ import argparse
 import re
 import os
 
+import dotenv
+
+dotenv.load_dotenv(os.path.join(os.environ.get("ENV_DIR", os.getcwd()), ".env"))
+
 from_env = lambda key, default: os.environ.get(key, default)
 
 BOT_TOKEN = from_env("telebot", False)
