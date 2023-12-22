@@ -9,9 +9,9 @@ BOT_TOKEN = from_env("telebot", False)
 
 assert BOT_TOKEN, "Add telegram bot token to the .env file"
 
-bot = telebot.TeleBot(BOT_TOKEN)
+bot = telebot.TeleBot(BOT_TOKEN, parse_mode="Markdown")
 
-WEBHOOK_URL = from_env("webhook_url",'')  # Replace with your server
+WEBHOOK_URL = from_env("webhook_url", "")  # Replace with your server
 bot.remove_webhook()  # Remove existing webhook
 bot.set_webhook(url=os.path.join(WEBHOOK_URL, BOT_TOKEN))
 
@@ -23,13 +23,21 @@ help_message = """
 
 parser = argparse.ArgumentParser()
 parser.add_argument(
-    "data", help="Text to generate qrcode from", nargs="*",
+    "data",
+    help="Text to generate qrcode from",
+    nargs="*",
 )
 parser.add_argument(
     "-f", "-fit", action="store_true", default=True, help="Center the qrcode"
 )
 parser.add_argument("-v", "--version", type=int, help="QRcode version", default=1)
-parser.add_argument("-s", "--size", help="Size of each box", default=10,type=int,)
+parser.add_argument(
+    "-s",
+    "--size",
+    help="Size of each box",
+    default=10,
+    type=int,
+)
 parser.add_argument(
     "-b", "--border", help="Number of modules/dots around QR Code.", type=int, default=5
 )
