@@ -5,7 +5,7 @@ import os
 
 import dotenv
 
-dotenv.load_dotenv(os.path.join(os.getcwd(), ".env"))
+dotenv.load_dotenv(".env")
 
 
 @application.route("/")
