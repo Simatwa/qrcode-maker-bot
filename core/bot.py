@@ -54,7 +54,7 @@ def show_help(message):
     bot.send_message(message.chat.id, text=help_message)
 
 
-@bot.message_handler(func=lambda msg: True)
+@bot.message_handler(func=lambda msg: True, content_types = ['text'])
 def generate_qrcode(message):
     try:
         raw_string = re.sub(
